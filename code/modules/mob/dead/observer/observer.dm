@@ -1214,7 +1214,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			. += larva_queue_cached_message
 
 	if(SSticker.current_state == GAME_STATE_FINISHED)
-		var/round_end_timer = "Time To Restart: [(SSticker.roundend_restart_delay + (SSticker.mode.round_end_time - world.time)) / 10 ]s [SSticker.delay_end ? "(DELAYED)" : ""]"
+		var/round_end_timer = "Time To Restart: [(SSticker.roundend_restart_delay + (SSticker.mode.round_end_time - world.time)) / 10 - 10]s [SSticker.delay_end ? "(DELAYED)" : ""]"
 		if(SSticker.mode.round_end_time == 0)
 			round_end_timer = "Time To Restart: Ongoing Vote [SSticker.delay_end ? "(DELAYED)" : ""]"
 		if(SSticker.mode.round_end_time < 0)
