@@ -192,18 +192,25 @@
 	return FALSE
 
 /atom/proc/clicked(mob/user, list/mods)
-	if (mods["shift"] && !mods["middle"])
+	var/proximity = FALSE
+	var/turf/target_turf = get_turf(src)
+	if(target_turf && user.TurfAdjacent(target_turf))
+		proximity = TRUE
+
+	if(SEND_SIGNAL(src, COMSIG_ATOM_CLICKED, user, proximity, mods) & COMPONENT_ATOM_OVERRIDE_CLICK)
+		return TRUE
+
+	if(mods[SHIFT_CLICK] && !mods[MIDDLE_CLICK])
 		if(can_examine(user))
 			examine(user)
 		return TRUE
 
-	if (mods["alt"])
-		var/turf/T = get_turf(src)
-		if(T && user.TurfAdjacent(T) && T.contents.len)
-			user.set_listed_turf(T)
+	if(mods[ALT_CLICK])
+		if(proximity && target_turf.contents.len)
+			user.set_listed_turf(target_turf)
 
 		return TRUE
-	return FALSE
+	return
 
 /atom/movable/clicked(mob/user, list/mods)
 	if (..())

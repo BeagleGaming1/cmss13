@@ -33,88 +33,121 @@
  *
  * */
 
+///The recipe has exactly the amount of ingredients it needs
+#define RECIPES_REAGENTS_CORRECT 0 //1
+///The recipe has too many ingredients
+#define RECIPES_REAGENTS_HIGH 1 //-1
+///The recipe doesn't have enough ingredients
+#define RECIPES_REAGENTS_LOW 2 //0
+
 /datum/recipe
-	var/list/reagents // example:  = list("berryjuice" = 5) // do not list same reagent twice
-	var/list/items // example: =list(/obj/item/tool/crowbar, /obj/item/welder) // place /foo/bar before /foo
-	var/result //example: = /obj/item/reagent_container/food/snacks/donut/normal
-	var/time = 100 // 1/10 part of second
+	///A list of all items the recipe needs, by the items typepath
+	var/list/items //example: list(/obj/item/tool/crowbar, /obj/item/welder) // place /foo/bar before /foo
+	///A list of all chemicals the recipe needs, by the reagents id
+	var/list/reagents //example: list("berryjuice" = 5) // do not list same reagent twice
+	///The typepath of the resulting item
+	var/result
+	///Time it takes a machine to cook the recipe, in deciseconds
+	var/time
 
-
+///Check if the machine has correct reagents
 /datum/recipe/proc/check_reagents(datum/reagents/avail_reagents) //1=precisely, 0=insufficiently, -1=superfluous
-	. = 1
-	for (var/r_r in reagents)
-		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
-		if (!(abs(aval_r_amnt - reagents[r_r])<0.5)) //if NOT equals
-			if (aval_r_amnt>reagents[r_r])
-				. = -1
-			else
-				return 0
-	if ((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
+	if(!reagents) //if no chems in the recipe, skip it
+		return 1
+
+	if(reagents.len < avail_reagents.reagent_list.len) //if less chems
 		return -1
-	return .
 
-/datum/recipe/proc/check_items(obj/container as obj) //1=precisely, 0=insufficiently, -1=superfluous
-	if (!items)
-		if (locate(/obj/) in container)
+	for(var/chem_ingredient in reagents) //loop through every chem required in the recipe
+		var/chem_amount = avail_reagents.get_reagent_amount(chem_ingredient) //If the chem is in the reagent storage, get the amount
+		var/chem_diff = abs(chem_amount - reagents[chem_ingredient]) //the difference between how many units are required and had
+
+		if((chem_diff < 0.1)) //floating point
+			continue
+
+		if(chem_amount > reagents[chem_ingredient]) //Whether theres too much or not enough
 			return -1
-		else
-			return 1
-	. = 1
-	var/list/checklist = items.Copy()
-	for (var/obj/O in container)
-		var/found = 0
-		for (var/type in checklist)
-			if (istype(O,type))
-				checklist-=type
-				found = 1
-				break
-		if (!found)
-			. = -1
-	if (checklist.len)
 		return 0
-	return .
 
-//general version
-/datum/recipe/proc/make(obj/container as obj)
-	var/obj/result_obj = new result(container)
-	for (var/obj/O in (container.contents-result_obj))
-		O.reagents.trans_to(result_obj, O.reagents.total_volume)
-		qdel(O)
+	return 1
+
+///Check if the machine has correct ingredients
+/datum/recipe/proc/check_items(obj/container) //1=precisely, 0=insufficiently, -1=superfluous
+	if(!items) //if no ingredients
+		if(locate(/obj/) in container) //check for anything in the ingredients list
+			return -1 //if unneeded ingredients
+		return 1
+
+	var/list/ingredients_list = items.Copy()
+	for(var/obj/ingredient in container)
+		var/found = FALSE
+
+		for(var/ingredient_type in ingredients_list)
+			if(!istype(ingredient, ingredient_type))
+				continue
+			ingredients_list -= type //if you have the correct ingredient, remove it from the list
+			found = TRUE
+			break
+
+		if(!found) //if an ingredient is missing
+			return -1
+
+	if(ingredients_list.len) //if theres anything left, theres not enough ingredients
+		return 0
+
+	return 1
+
+///Create an item and transfer reagents to it
+/datum/recipe/proc/make(obj/container)
+	var/obj/result_obj = new result(container) //make the new item
+
+	for(var/obj/ingredient in (container.contents - result_obj))
+		ingredient.reagents.trans_to(result_obj, ingredient.reagents.total_volume) //add chemicals from ingredient
+		qdel(ingredient) //remove the ingredient
+
 	container.reagents.clear_reagents()
 	return result_obj
 
-// food-related
-/datum/recipe/proc/make_food(obj/container as obj)
-	var/obj/result_obj = new result(container)
-	var/name_finalized
-	for (var/obj/item/reagent_container/food/snacks/O in (container.contents-result_obj))
-		if (O.reagents)
-			O.reagents.del_reagent("nutriment")
-			O.reagents.update_total()
-			O.reagents.trans_to(result_obj, O.reagents.total_volume)
-		if(!name_finalized && O.made_from_player)
-			result_obj.name = O.made_from_player + result_obj.name
-			result_obj.set_origin_name_prefix(O.made_from_player)
+///Create food and transfer reagents to it
+/datum/recipe/proc/make_food(obj/container)
+	var/obj/result_obj = new result(container) //make the new item
+	var/name_finalized = FALSE //incase it gets a unique name
+
+	for(var/obj/item/reagent_container/food/snacks/ingredient in (container.contents - result_obj))
+		if(ingredient.reagents)
+			ingredient.reagents.del_reagent("nutriment") //remove any extra nutrient
+			ingredient.reagents.update_total()
+			ingredient.reagents.trans_to(result_obj, ingredient.reagents.total_volume) //transfer everything else into the result
+
+		if(!name_finalized && ingredient.made_from_player) //ie human or xeno meat
+			result_obj.name = ingredient.made_from_player + result_obj.name
+			result_obj.set_origin_name_prefix(ingredient.made_from_player) //apply the special name to the food
 			name_finalized = TRUE
-	container.contents = null
+		qdel(ingredient) //remove the ingredient
+
 	container.reagents.clear_reagents()
 	return result_obj
 
-/proc/select_recipe(list/datum/recipe/available_recipes, obj/obj as obj, exact = 1 as num)
-	if (!exact)
+/proc/select_recipe(list/datum/recipe/available_recipes, obj/obj, exact = 1)
+	if(exact == 0)
 		exact = -1
+
 	var/list/datum/recipe/possible_recipes = new
+
 	for (var/datum/recipe/recipe in available_recipes)
 		if (recipe.check_reagents(obj.reagents)==exact && recipe.check_items(obj)==exact)
 			possible_recipes+=recipe
 	if (possible_recipes.len==0)
 		return null
+
 	else if (possible_recipes.len==1)
 		return possible_recipes[1]
+
 	else //okay, let's select the most complicated recipe
 		var/r_count = 0
 		var/i_count = 0
 		. = possible_recipes[1]
+
 		for (var/datum/recipe/recipe in possible_recipes)
 			var/N_i = (recipe.items)?(recipe.items.len):0
 			var/N_r = (recipe.reagents)?(recipe.reagents.len):0
@@ -123,6 +156,10 @@
 				i_count = N_i
 				. = recipe
 		return .
+
+#undef RECIPES_REAGENTS_LOW
+#undef RECIPES_REAGENTS_HIGH
+#undef RECIPES_REAGENTS_CORRECT
 
 //Burger have a bun as a base.
 

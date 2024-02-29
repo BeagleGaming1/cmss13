@@ -54,3 +54,7 @@
 
 /// Called when an atom has emp_act called on it, from /atom/emp_act: (severity)
 #define COMSIG_ATOM_EMP_ACT "atom_emp_act"
+
+///From /atom/proc/clicked(): (mob/user, proximity, list/mods)
+#define COMSIG_ATOM_CLICKED "atom_clicked"
+	#define COMPONENT_ATOM_OVERRIDE_CLICK (1<<0)

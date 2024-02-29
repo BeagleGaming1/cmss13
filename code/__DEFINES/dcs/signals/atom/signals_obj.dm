@@ -43,3 +43,11 @@
 #define COMSIG_DROPSHIP_REMOVE_EQUIPMENT "dropship_remove_equipment"
 
 #define COMSIG_STRUCTURE_CRATE_SQUAD_LAUNCHED "structure_crate_squad_launched"
+
+///from /obj/structure/attackby(): (/obj/item, /mob/living)
+#define COMSIG_STRUCTURE_ATTACKBY "structure_attackby"
+
+///from /obj/structure/proc/toggle_anchored(): (/obj/item, /mob/living)
+#define COMSIG_STRUCTURE_PRE_TOGGLE_ANCHOR "structure_pre_toggle_anchor"
+///Return this in response if you don't want the structure to be anchored / unanchored
+	#define COMPONENT_CANCEL_TOGGLE_ANCHOR (1<<0)

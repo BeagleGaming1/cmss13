@@ -462,31 +462,40 @@
 
 	return TRUE
 
-/datum/reagents/proc/has_reagent(reagent, amount = -1)
-	for(var/datum/reagent/R in reagent_list)
-		if(R.id == reagent)
-			if(!amount)
-				return R
-			else
-				if(R.volume >= amount)
-					return R
-				else
-					return FALSE
-	return FALSE
+///Whether the holder has the chemical, and if there is a sufficient amount
+/datum/reagents/proc/has_reagent(reagent, amount = FALSE)
+	for(var/datum/reagent/chemical in reagent_list)
+		if(chemical.id != reagent)
+			continue
+		if(chemical.volume >= amount)
+			return chemical
 
+///Returns volume of selected reagent if it exists
 /datum/reagents/proc/get_reagent_amount(reagent)
-	for(var/datum/reagent/R in reagent_list)
-		if(R.id == reagent)
-			return R.volume
-	return 0
+	for(var/datum/reagent/chemical in reagent_list)
+		if(chemical.id != reagent)
+			continue
+		return chemical.volume
 
+///Returns a list of every reagent name in the holder
 /datum/reagents/proc/get_reagents()
-	var/res = ""
-	for(var/datum/reagent/A in reagent_list)
-		if(res != "") res += ","
-		res += A.name
+	var/reagents = ""
+	for(var/datum/reagent/chemical in reagent_list)
+		if(reagents != "")
+			reagents += ","
+		reagents += chemical.name
 
-	return res
+	return reagents
+
+///Returns a list of name and volume of every reagent in the holder
+/datum/reagents/proc/get_reagents_and_amount()
+	var/reagents = ""
+	for(var/datum/reagent/chemical in reagent_list)
+		if(reagents != "")
+			reagents += ", "
+		reagents += "[chemical.name] ([chemical.volume]u)"
+
+	return reagents
 
 /datum/reagents/proc/remove_all_type(reagent_type, amount, strict = 0, safety = 1) // Removes all reagent of X type. @strict set to 1 determines whether the childs of the type are included.
 	if(!isnum(amount))

@@ -37,11 +37,14 @@
 			visible_message(SPAN_DANGER("[user] smashes [src] apart!"))
 			deconstruct(FALSE)
 
-/obj/structure/attackby(obj/item/W, mob/user)
-	if(HAS_TRAIT(W, TRAIT_TOOL_WRENCH))
+/obj/structure/attackby(obj/item/attacking_item, mob/user)
+	if(SEND_SIGNAL(src, COMSIG_STRUCTURE_ATTACKBY, attacking_item, user) & COMPONENT_NO_AFTERATTACK)
+		return TRUE
+
+	if(HAS_TRAIT(attacking_item, TRAIT_TOOL_WRENCH))
 		if(user.action_busy)
 			return TRUE
-		toggle_anchored(W, user)
+		toggle_anchored(attacking_item, user)
 		return TRUE
 	..()
 
@@ -207,21 +210,24 @@
 		return 0
 	return 1
 
-/obj/structure/proc/toggle_anchored(obj/item/W, mob/user)
+/obj/structure/proc/toggle_anchored(obj/item/wrench, mob/user)
 	if(!wrenchable)
 		to_chat(user, SPAN_WARNING("[src] cannot be [anchored ? "un" : ""]anchored."))
-		return FALSE
-	else
-		// Wrenching is faster if we are better at engineering
-		var/timer = max(10, 40 - user.skills.get_skill_level(SKILL_ENGINEER) * 10)
-		if(do_after(usr, timer, INTERRUPT_ALL, BUSY_ICON_BUILD))
-			anchored = !anchored
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-			if(anchored)
-				user.visible_message(SPAN_NOTICE("[user] anchors [src] into place."),SPAN_NOTICE("You anchor [src] into place."))
-			else
-				user.visible_message(SPAN_NOTICE("[user] unanchors [src]."),SPAN_NOTICE("You unanchor [src]."))
-			return TRUE
+		return
+
+	// Wrenching is faster if we are better at engineering
+	var/timer = max(1 SECONDS, 4 SECONDS - user.skills.get_skill_level(SKILL_ENGINEER) * 1 SECONDS)
+	if(!do_after(user, timer, INTERRUPT_ALL, BUSY_ICON_BUILD))
+		return
+
+	if(SEND_SIGNAL(src, COMSIG_STRUCTURE_PRE_TOGGLE_ANCHOR, wrench, user) & COMPONENT_CANCEL_TOGGLE_ANCHOR)
+		return TRUE
+
+	anchored = !anchored
+	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+
+	user.visible_message(SPAN_NOTICE("[user] [anchored ? "" : "un"]anchors [src] into place."), SPAN_NOTICE("You [anchored ? "" : "un"]anchor [src] into place."))
+	return TRUE
 
 /obj/structure/get_applying_acid_time()
 	if(unacidable)
