@@ -7,11 +7,6 @@
 #define COOKING_TYPE_CAMPFIRE "cooking_type_campfire"
 #define COOKING_TYPE_PROCESSOR "cooking_type_processor"
 
-#define COOKING_METHOD_NONE "cooking_method_none"
-#define COOKING_METHOD_PLATE "cooking_method_plate"
-#define COOKING_METHOD_PAN "cooking_method_pan"
-#define COOKING_METHOD_POT "cooking_method_pot"
-
 /datum/component/cooking
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 
