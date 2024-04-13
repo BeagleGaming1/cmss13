@@ -1208,7 +1208,6 @@
 /area/adminlevel/bunker01/kitchen)
 "dj" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/power/apc/antag{
 	dir = 4;
 	pixel_x = 25
@@ -1236,7 +1235,6 @@
 /area/adminlevel/bunker01/hydroponics)
 "dn" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /obj/structure/pipes/vents/pump{
 	dir = 8;
 	id_tag = "mining_outpost_pump"

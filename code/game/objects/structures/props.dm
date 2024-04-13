@@ -557,6 +557,7 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	fuel_drain(TRUE)
+	AddComponent(/datum/component/cooking, COOKING_TYPE_CAMPFIRE)
 
 /obj/structure/prop/brazier/campfire/get_examine_text(mob/user)
 	. = ..()

@@ -3200,13 +3200,6 @@
 	icon_state = "floor8"
 	},
 /area/whiskey_outpost/outside/lane/four_north)
-"le" = (
-/obj/structure/surface/table,
-/obj/structure/machinery/microwave{
-	pixel_y = 5
-	},
-/turf/open/floor/prison,
-/area/whiskey_outpost/inside/living)
 "lf" = (
 /turf/open/jungle,
 /area/whiskey_outpost/outside/south)
@@ -30265,7 +30258,7 @@ pq
 pq
 iq
 cy
-le
+lD
 lF
 cy
 iq

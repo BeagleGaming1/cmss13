@@ -2359,7 +2359,6 @@
 /area/strata/ag/interior/dorms/canteen)
 "agL" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/light/small{
 	dir = 1;
 	pixel_y = 20
@@ -3952,7 +3951,6 @@
 /area/strata/ag/exterior/paths/cabin_area)
 "alx" = (
 /obj/structure/surface/table/reinforced/almayer_B,
-/obj/structure/machinery/microwave,
 /turf/open/floor/prison{
 	icon_state = "darkredfull2"
 	},
@@ -4871,7 +4869,6 @@
 /area/strata/ag/interior/outpost/security)
 "aoF" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /turf/open/floor/strata{
 	icon_state = "fake_wood"
 	},
@@ -10923,7 +10920,6 @@
 /area/strata/ag/interior/outpost/maint/canteen_e_1)
 "aGR" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /turf/open/floor/strata{
 	dir = 8;
 	icon_state = "white_cyan2"
@@ -30510,7 +30506,6 @@
 /area/strata/ug/interior/outpost/jung/dorms/admin1)
 "eeG" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /turf/open/floor/strata{
 	dir = 8;
 	icon_state = "white_cyan2"
@@ -32344,7 +32339,6 @@
 /area/strata/ag/exterior/marsh/crash)
 "haZ" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /obj/structure/platform/strata/metal{
 	dir = 1
 	},
@@ -39455,7 +39449,6 @@
 /area/strata/ag/interior/restricted/devroom)
 "tmB" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /turf/open/floor/strata{
 	dir = 8;
 	icon_state = "white_cyan2"

@@ -1,7 +1,8 @@
 
+/* microwave was here
 /obj/structure/machinery/microwave
 	name = "Microwave"
-	icon = 'icons/obj/structures/machinery/kitchen.dmi'
+	icon = 'icons/obj/structures/machinery/kitchen/kitchen_misc.dmi'
 	icon_state = "mw"
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE
@@ -381,3 +382,5 @@
 			dispose()
 
 	return TRUE
+*/
+//hi chat

@@ -917,15 +917,7 @@
 /turf/open/floor/plating/prison,
 /area/fiorina/station/medbay)
 "azK" = (
-/obj/structure/machinery/microwave{
-	desc = "There's two of them.";
-	pixel_y = 5
-	},
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	desc = "Holy shit";
-	pixel_y = 18
-	},
 /obj/item/storage/pill_bottle/kelotane/skillless{
 	desc = "Don't touch -Dr. O";
 	pixel_x = 6;
@@ -11476,9 +11468,6 @@
 /area/fiorina/tumor/ice_lab)
 "hao" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	pixel_y = 7
-	},
 /obj/structure/machinery/light/double/blue,
 /turf/open/floor/prison{
 	icon_state = "bluefull"
@@ -19567,10 +19556,6 @@
 /area/fiorina/station/research_cells)
 "lMq" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	icon_state = "mwo";
-	pixel_y = 6
-	},
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "kitchen"
@@ -20178,11 +20163,6 @@
 	},
 /area/fiorina/station/power_ring)
 "mkI" = (
-/obj/structure/machinery/microwave{
-	desc = "So uh yeah, about that cat...";
-	icon_state = "mwbloodyo";
-	pixel_y = 6
-	},
 /obj/structure/surface/table/reinforced/prison,
 /turf/open/floor/prison,
 /area/fiorina/tumor/aux_engi)
@@ -20470,15 +20450,6 @@
 	},
 /turf/open/floor/wood,
 /area/fiorina/station/park)
-"mtD" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	pixel_y = 7
-	},
-/turf/open/floor/prison{
-	icon_state = "bluefull"
-	},
-/area/fiorina/station/power_ring)
 "mtG" = (
 /turf/open/floor/prison{
 	icon_state = "darkbrowncorners2"
@@ -20976,16 +20947,6 @@
 /obj/effect/spawner/random/sentry/midchance,
 /turf/open/floor/plating/prison,
 /area/fiorina/station/medbay)
-"mIQ" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "kitchen"
-	},
-/area/fiorina/station/civres_blue)
 "mJc" = (
 /obj/effect/landmark/structure_spawner/xvx_hive/xeno_door,
 /turf/open/floor/prison{
@@ -22728,17 +22689,6 @@
 	},
 /turf/open/gm/river/desert/deep,
 /area/fiorina/lz/near_lzII)
-"nKo" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	icon_state = "mwo";
-	pixel_y = 6
-	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "greenfull"
-	},
-/area/fiorina/tumor/civres)
 "nKG" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/almayer{
@@ -35441,18 +35391,6 @@
 	icon_state = "squares"
 	},
 /area/fiorina/station/telecomm/lz1_cargo)
-"vvT" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	desc = "So uh yeah, about that cat...";
-	icon_state = "mwbloodyo";
-	pixel_y = 6
-	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "kitchen"
-	},
-/area/fiorina/station/civres_blue)
 "vwt" = (
 /obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/plating/prison,
@@ -35475,16 +35413,6 @@
 	},
 /turf/open/floor/plating/prison,
 /area/fiorina/tumor/aux_engi)
-"vwN" = (
-/obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "blue_plate"
-	},
-/area/fiorina/station/botany)
 "vwX" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -48138,7 +48066,7 @@ dXG
 eYz
 lLe
 rqC
-nKo
+rNV
 jri
 dIo
 fCF
@@ -53858,7 +53786,7 @@ bNE
 rja
 rja
 kAc
-mIQ
+lMq
 hDb
 jYK
 xxD
@@ -55584,7 +55512,7 @@ xxD
 xxD
 xxD
 jYK
-mIQ
+lMq
 wFU
 bQM
 bQM
@@ -57885,7 +57813,7 @@ xxD
 whr
 dwJ
 gnL
-vvT
+lMq
 rja
 dhL
 pQs
@@ -61978,7 +61906,7 @@ mKx
 sMY
 mKx
 xiL
-vwN
+kgY
 ipd
 rKy
 rft
@@ -77671,7 +77599,7 @@ tOM
 bPh
 mzJ
 tOM
-mtD
+chg
 mxQ
 xCa
 pjT

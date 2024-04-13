@@ -18,12 +18,11 @@
 	ground_offset_y = 7
 
 /obj/item/reagent_container/Initialize()
+	. = ..()
+	create_reagents(volume)
+
 	if(!possible_transfer_amounts)
 		actions_types -= /datum/action/item_action/reagent_container/set_transfer_amount
-	. = ..()
-	if(!possible_transfer_amounts)
-		verbs -= /obj/item/reagent_container/verb/set_APTFT //which objects actually uses it?
-	create_reagents(volume)
 
 /obj/item/reagent_container/get_examine_text(mob/user)
 	. = ..()
@@ -32,40 +31,37 @@
 		. += reagent_info
 
 /obj/item/reagent_container/proc/show_reagent_info(mob/user)
-	if(isxeno(user) || reagent_desc_override)
+	if(reagent_desc_override) //custom desc
 		return
-	var/list/reagent_desc
-	if(reagents && (transparent || user.can_see_reagents()))
-		reagent_desc += "It contains : "
-		if(!user.can_see_reagents())
-			if(get_dist(user, src) > 2 && user != loc) //we have a distance check with this
-				return SPAN_WARNING("It's too far away for you to see what's in it!")
-			if(!length(reagents.reagent_list))
-				reagent_desc += "nothing."
-			else
-				reagent_desc += "[reagents.total_volume] units of liquid."
-			return SPAN_INFO("[reagent_desc]")
-		else //when wearing science goggles, you can see what's in something from any range
-			if(!length(reagents.reagent_list))
-				reagent_desc += "nothing."
-			else
-				for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
-					reagent_desc += "[round(current_reagent.volume, 0.01)] units of [current_reagent.name].<br>"
-			return SPAN_INFO("[reagent_desc]")
+	if(isxeno(user)) //only humans can see
+		return
 
-/obj/item/reagent_container/verb/set_APTFT() //set amount_per_transfer_from_this
-	set name = "Set transfer amount"
-	set category = "Object"
-	set src in usr
-	if(!ishuman(usr))
+	if(!reagents) //no reagents datum
 		return
-	var/mob/living/carbon/human/user = usr
-	var/obj/item/reagent_container/R = user.get_active_hand()
-	if(!istype(R))
+
+	var/distance = get_dist(user, src) //too far away
+	if(!(distance > 2 || distance == -1))
+		return SPAN_WARNING("It's too far away for you to see what's in it!")
+
+	if(!length(reagents.reagent_list))
+		return SPAN_INFO("It contains nothing.")
+
+	if(user.can_see_reagents()) //see exact contents
+		return SPAN_INFO("It contains: [reagents.get_reagents_and_amount()]")
+	return SPAN_INFO("It contains: [reagents.total_volume]")
+
+/obj/item/reagent_container/proc/set_amount_per_transfer_from_this(mob/living/carbon/human/user)
+	if(loc != user)
 		return
-	var/N = tgui_input_list(usr, "Amount per transfer from this:","[R]", possible_transfer_amounts)
-	if (N)
-		R.amount_per_transfer_from_this = N
+
+	var/new_transfer_amount = tgui_input_list(user, "Amount per transfer from this:","[src]", possible_transfer_amounts, 20 SECONDS)
+	if(!new_transfer_amount)
+		return
+
+	if(loc != user) //check again incase they waited
+		return
+
+	amount_per_transfer_from_this = new_transfer_amount
 
 /obj/item/reagent_container/Destroy()
 	possible_transfer_amounts = null
@@ -79,35 +75,33 @@
 /obj/item/reagent_container/proc/display_contents(mob/user)
 	if(isxeno(user))
 		return
-	if(skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
-		return "[src] contains: [get_reagent_list_text()]."//this the pill
-	else
+
+	if(!skillcheck(user, SKILL_MEDICAL, SKILL_MEDICAL_TRAINED))
 		return "You don't know what's in it."
+	return "It contains: [get_reagent_list_text()]."//this the pill
 
-//returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
+/// returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()
-	if(reagents && reagents.reagent_list && reagents.reagent_list.len)
-		var/datum/reagent/R = reagents.reagent_list[1]
-		. = "[R.name]([R.volume]u)"
-		if(reagents.reagent_list.len < 2) return
-		for (var/i in 2 to reagents.reagent_list.len)
-			R = reagents.reagent_list[i]
-			if(!R) continue
-			. += "; [R.name]([R.volume]u)"
-	else
-		. = "No reagents"
+	if(!reagents)
+		return "No reagents"
+	if(!reagents.reagent_list)
+		return "No reagents"
+	if(!length(reagents.reagent_list))
+		return "No reagents"
 
+	return reagents.get_reagents_and_amount()
 
+// Action for changing the transfer amount of the container
 /datum/action/item_action/reagent_container/set_transfer_amount
+	name = "Set Transfer Amount"
 
 /datum/action/item_action/reagent_container/set_transfer_amount/New(mob/living/user, obj/item/holder)
 	..()
-	name = "Set Transfer Amount"
 	button.name = name
 	button.overlays.Cut()
-	var/image/IMG = image(holder_item.icon, button, holder_item.icon_state)
-	button.overlays += IMG
+	var/image/button_overlay = image(holder_item.icon, button, holder_item.icon_state)
+	button.overlays += button_overlay
 
 /datum/action/item_action/reagent_container/set_transfer_amount/action_activate()
-	var/obj/item/reagent_container/cont = holder_item
-	cont.set_APTFT()
+	var/obj/item/reagent_container/container = holder_item
+	container.set_amount_per_transfer_from_this(owner)

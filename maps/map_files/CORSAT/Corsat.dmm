@@ -18592,7 +18592,6 @@
 /area/corsat/gamma/residential/researcher)
 "aYZ" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/camera/autoname{
 	dir = 4;
 	network = list("sigma")
@@ -22378,7 +22377,6 @@
 /obj/structure/machinery/light{
 	dir = 4
 	},
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/almayer,
 /turf/open/floor/corsat{
 	icon_state = "sterileplate"
@@ -24301,13 +24299,6 @@
 	icon_state = "sterileplate"
 	},
 /area/corsat/gamma/kitchen)
-"bpG" = (
-/obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave,
-/turf/open/floor/corsat{
-	icon_state = "sterileplate"
-	},
-/area/corsat/gamma/kitchen)
 "bpH" = (
 /obj/structure/machinery/meter,
 /obj/structure/pipes/standard/simple/visible{
@@ -24946,7 +24937,6 @@
 /area/corsat/omega/cargo)
 "bsa" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave,
 /turf/open/floor/corsat{
 	dir = 8;
 	icon_state = "bluegrey"
@@ -24971,7 +24961,6 @@
 /area/corsat/sigma/southeast/dataoffice)
 "bse" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave,
 /turf/open/floor/corsat{
 	dir = 9;
 	icon_state = "red"
@@ -27133,7 +27122,6 @@
 	},
 /area/corsat/gamma/administration)
 "bys" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/woodentable,
 /obj/structure/machinery/light{
 	dir = 8
@@ -57283,14 +57271,6 @@
 	icon_state = "tan"
 	},
 /area/corsat/gamma/residential/west)
-"sbF" = (
-/obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave,
-/turf/open/floor/corsat{
-	dir = 4;
-	icon_state = "purplewhite"
-	},
-/area/corsat/omega/complex)
 "sbJ" = (
 /turf/open/floor/corsat{
 	dir = 4;
@@ -78158,7 +78138,7 @@ aol
 koh
 tVW
 djR
-sbF
+cog
 cog
 rnK
 aol
@@ -87346,7 +87326,7 @@ asc
 asc
 bjy
 bjz
-bpG
+fLz
 asc
 dUn
 axQ

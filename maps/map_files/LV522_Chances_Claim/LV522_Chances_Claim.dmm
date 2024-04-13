@@ -7763,9 +7763,6 @@
 /area/lv522/indoors/a_block/kitchen)
 "dEy" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /obj/item/ashtray/bronze{
 	icon_state = "ashtray_full_bl";
 	pixel_x = 3;
@@ -17916,12 +17913,6 @@
 /area/lv522/outdoors/colony_streets/north_street)
 "hAi" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 3
-	},
-/obj/structure/machinery/microwave{
-	pixel_y = 15
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -20252,12 +20243,6 @@
 /area/lv522/outdoors/colony_streets/north_east_street)
 "iui" = (
 /obj/structure/surface/table/reinforced/almayer_B,
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
-/obj/structure/machinery/microwave{
-	pixel_y = 18
-	},
 /turf/open/floor/prison{
 	icon_state = "darkredfull2"
 	},
@@ -23905,10 +23890,6 @@
 /area/lv522/indoors/b_block/bridge)
 "jJh" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	density = 0;
-	pixel_y = 9
-	},
 /obj/item/trash/plate{
 	pixel_x = 2;
 	pixel_y = 20
@@ -25560,10 +25541,6 @@
 	},
 /area/lv522/indoors/a_block/medical/glass)
 "klL" = (
-/obj/structure/machinery/microwave,
-/obj/structure/machinery/microwave{
-	pixel_y = 13
-	},
 /obj/item/trash/ceramic_plate{
 	pixel_y = 21
 	},
@@ -42209,13 +42186,6 @@
 	},
 /turf/open/auto_turf/sand_white/layer0,
 /area/lv522/outdoors/colony_streets/north_east_street)
-"qxD" = (
-/obj/structure/machinery/microwave,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "floor_marked"
-	},
-/area/lv522/landing_zone_1)
 "qxF" = (
 /obj/structure/machinery/door/airlock/almayer/generic{
 	name = "\improper Bedroom"
@@ -53075,9 +53045,6 @@
 /area/lv522/indoors/c_block/mining)
 "upl" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 4
-	},
 /obj/item/reagent_container/food/drinks/coffee{
 	layer = 3.1;
 	pixel_x = -5;
@@ -70127,7 +70094,7 @@ oKG
 ryU
 ryU
 ryU
-qxD
+nHi
 rrI
 xcY
 pnj

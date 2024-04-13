@@ -1034,9 +1034,6 @@
 /area/adminlevel/ert_station)
 "yQ" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave{
-	pixel_y = 10
-	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},

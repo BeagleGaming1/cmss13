@@ -1600,9 +1600,6 @@
 /turf/open/auto_turf/snow/layer1,
 /area/shiva/exterior/cp_lz2)
 "ahD" = (
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /obj/structure/surface/table/reinforced/prison,
 /turf/open/floor/shiva{
 	dir = 4;
@@ -3699,7 +3696,6 @@
 /area/shiva/interior/colony/botany)
 "auT" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor/shiva{
 	dir = 1
 	},
@@ -8396,7 +8392,6 @@
 /area/shiva/exterior/junkyard/fortbiceps)
 "cXm" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave,
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
@@ -15998,9 +15993,6 @@
 /area/shiva/interior/colony/medseceng)
 "lbF" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
@@ -18635,9 +18627,6 @@
 /turf/open/auto_turf/snow/layer2,
 /area/shiva/exterior/cp_lz2)
 "nPH" = (
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /obj/structure/surface/table,
 /turf/open/floor/shiva{
 	icon_state = "yellowfull"
@@ -21579,9 +21568,6 @@
 /turf/open/floor/shiva,
 /area/shiva/interior/bar)
 "qYp" = (
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /obj/structure/surface/table/reinforced/prison,
 /turf/open/floor/shiva{
 	icon_state = "bluefull"
@@ -24128,9 +24114,6 @@
 /turf/open/auto_turf/ice/layer1,
 /area/shiva/interior/caves/right_spiders)
 "tMS" = (
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /obj/structure/surface/table/reinforced/prison,
 /turf/open/floor/shiva{
 	dir = 1;
@@ -24415,9 +24398,6 @@
 /turf/closed/wall/shiva/prefabricated/reinforced/hull,
 /area/shiva/exterior/junkyard)
 "tYA" = (
-/obj/structure/machinery/microwave{
-	pixel_y = 6
-	},
 /obj/structure/surface/table/reinforced/prison,
 /turf/open/floor/shiva,
 /area/shiva/interior/colony/research_hab)

@@ -462,7 +462,6 @@
 /area/shuttle/ert)
 "Ad" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave,
 /turf/open/floor/almayer,
 /area/shuttle/ert)
 "AE" = (

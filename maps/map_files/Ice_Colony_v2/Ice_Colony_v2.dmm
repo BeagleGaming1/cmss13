@@ -8440,7 +8440,6 @@
 /area/ice_colony/surface/dorms/canteen)
 "axT" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "darkgreen2"
@@ -12373,7 +12372,6 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aIZ" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -12820,7 +12818,6 @@
 /area/ice_colony/surface/bar/canteen)
 "aKW" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
 "aKX" = (
@@ -14217,7 +14214,6 @@
 /area/ice_colony/surface/bar/canteen)
 "aPu" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor{
 	icon_state = "freezerfloor"
 	},
@@ -19199,7 +19195,6 @@
 /area/ice_colony/surface/excavation)
 "bfv" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor{
 	icon_state = "darkblue2"
 	},
@@ -22927,7 +22922,6 @@
 	dir = 8
 	},
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor{
 	dir = 9;
 	icon_state = "whitered"
@@ -26700,14 +26694,6 @@
 	icon_state = "darkblue2"
 	},
 /area/ice_colony/underground/command/center)
-"bCA" = (
-/obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkgreen2"
-	},
-/area/ice_colony/underground/crew/canteen)
 "bCB" = (
 /obj/structure/surface/table,
 /obj/item/reagent_container/food/snacks/hotchili,
@@ -30673,7 +30659,6 @@
 	},
 /area/ice_colony/underground/security)
 "bNS" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/reinforced,
 /turf/open/floor{
 	dir = 4;
@@ -32055,7 +32040,6 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bRF" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/reinforced,
 /turf/open/floor{
 	dir = 1;
@@ -61196,8 +61180,8 @@ bAl
 bAL
 bBu
 bBU
-bCA
-bCA
+bBU
+bBU
 bDO
 bEJ
 bFs

@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/freezer
-	icon = 'icons/obj/structures/machinery/kitchen.dmi'
+	icon = 'icons/obj/structures/machinery/kitchen/kitchen_misc.dmi'
 	icon_state = "fridge1"
 	icon_closed = "fridge"
 	icon_locked = "fridge1"

@@ -9493,7 +9493,6 @@
 	},
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aCE" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/reinforced,
 /turf/open/floor/prison{
 	dir = 10;
@@ -48682,14 +48681,12 @@
 	pixel_y = 24;
 	start_charge = 0
 	},
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/reinforced,
 /turf/open/floor/prison{
 	icon_state = "sterile_white"
 	},
 /area/desert_dam/building/cafeteria/cafeteria)
 "dbG" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/reinforced,
 /turf/open/floor/prison{
 	icon_state = "sterile_white"

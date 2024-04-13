@@ -1,7 +1,7 @@
 
 /obj/structure/machinery/juicer
 	name = "Juicer"
-	icon = 'icons/obj/structures/machinery/kitchen.dmi'
+	icon = 'icons/obj/structures/machinery/kitchen/kitchen_misc.dmi'
 	icon_state = "juicer1"
 	layer = ABOVE_TABLE_LAYER
 	density = FALSE

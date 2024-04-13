@@ -1746,19 +1746,6 @@
 	reagents.add_reagent("tomatojuice", 10)
 	bitesize = 3
 
-/obj/item/reagent_container/food/snacks/rofflewaffles
-	name = "Roffle Waffles"
-	desc = "Waffles from Roffle. Co."
-	icon_state = "rofflewaffles"
-	trash = /obj/item/trash/waffles
-	filling_color = "#FF00F7"
-
-/obj/item/reagent_container/food/snacks/rofflewaffles/Initialize()
-	. = ..()
-	reagents.add_reagent("bread", 8)
-	reagents.add_reagent("psilocybin", 8)
-	bitesize = 4
-
 /obj/item/reagent_container/food/snacks/stew
 	name = "Stew"
 	desc = "A nice and warm stew. Healthy and strong."

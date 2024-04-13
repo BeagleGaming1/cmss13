@@ -2,7 +2,7 @@
 /obj/structure/machinery/gibber
 	name = "Gibber"
 	desc = "The name isn't descriptive enough?"
-	icon = 'icons/obj/structures/machinery/kitchen.dmi'
+	icon = 'icons/obj/structures/machinery/kitchen/kitchen_misc.dmi'
 	icon_state = "grinder"
 	density = TRUE
 	anchored = TRUE
@@ -17,20 +17,20 @@
 
 /obj/structure/machinery/gibber/New()
 	..()
-	overlays += image('icons/obj/structures/machinery/kitchen.dmi', "grjam")
+	overlays += image('icons/obj/structures/machinery/kitchen/kitchen_misc.dmi', "grjam")
 
 /obj/structure/machinery/gibber/update_icon()
 	overlays.Cut()
 	if (dirty)
-		overlays += image('icons/obj/structures/machinery/kitchen.dmi', "grbloody")
+		overlays += image('icons/obj/structures/machinery/kitchen/kitchen_misc.dmi', "grbloody")
 	if(inoperable())
 		return
 	if (!occupant)
-		overlays += image('icons/obj/structures/machinery/kitchen.dmi', "grjam")
+		overlays += image('icons/obj/structures/machinery/kitchen/kitchen_misc.dmi', "grjam")
 	else if (operating)
-		overlays += image('icons/obj/structures/machinery/kitchen.dmi', "gruse")
+		overlays += image('icons/obj/structures/machinery/kitchen/kitchen_misc.dmi', "gruse")
 	else
-		overlays += image('icons/obj/structures/machinery/kitchen.dmi', "gridle")
+		overlays += image('icons/obj/structures/machinery/kitchen/kitchen_misc.dmi', "gridle")
 
 /obj/structure/machinery/gibber/relaymove(mob/user)
 	if(user.is_mob_incapacitated(TRUE)) return

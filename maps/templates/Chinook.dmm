@@ -2187,7 +2187,6 @@
 	},
 /area/adminlevel/chinook/offices)
 "hI" = (
-/obj/structure/machinery/microwave,
 /obj/structure/surface/table/reinforced/almayer_B,
 /turf/open/floor/almayer{
 	dir = 5;
@@ -2705,18 +2704,6 @@
 /obj/structure/sign/safety/fridge{
 	pixel_x = 7;
 	pixel_y = 24
-	},
-/turf/open/floor/almayer{
-	icon_state = "plate"
-	},
-/area/adminlevel/chinook/event)
-"jz" = (
-/obj/structure/machinery/microwave{
-	pixel_y = -4
-	},
-/obj/structure/machinery/microwave{
-	layer = 2.83;
-	pixel_y = 10
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate"
@@ -8610,13 +8597,6 @@
 	dir = 1;
 	icon_state = "red"
 	},
-/area/adminlevel/chinook/sec)
-"FG" = (
-/obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 7
-	},
-/turf/open/floor/almayer,
 /area/adminlevel/chinook/sec)
 "FH" = (
 /obj/structure/machinery/cm_vending/sorted/tech/tool_storage,
@@ -25390,7 +25370,7 @@ df
 df
 df
 Qx
-jz
+tG
 Ie
 xj
 lE
@@ -26711,7 +26691,7 @@ nH
 ZQ
 vc
 gc
-FG
+xN
 lh
 Vk
 Vk

@@ -2,7 +2,7 @@
 
 /obj/structure/kitchenspike
 	name = "a meat spike"
-	icon = 'icons/obj/structures/machinery/kitchen.dmi'
+	icon = 'icons/obj/structures/machinery/kitchen/kitchen_misc.dmi'
 	icon_state = "spike"
 	desc = "A spike for collecting meat from animals"
 	density = TRUE

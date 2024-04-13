@@ -9471,14 +9471,6 @@
 	icon_state = "barber"
 	},
 /area/lv624/lazarus/kitchen)
-"aPA" = (
-/obj/structure/surface/table,
-/obj/structure/machinery/microwave,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
-/area/lv624/lazarus/kitchen)
 "aPB" = (
 /obj/structure/surface/table,
 /obj/effect/landmark/item_pool_spawner/survivor_ammo/buckshot,
@@ -18622,10 +18614,6 @@
 /area/lv624/lazarus/engineering)
 "nxe" = (
 /obj/structure/surface/table/woodentable/poor,
-/obj/structure/machinery/microwave{
-	pixel_x = 2;
-	pixel_y = 3
-	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -53769,7 +53757,7 @@ aMl
 aNl
 aOa
 fsa
-aPA
+fsa
 aQe
 aQP
 aUJ

@@ -12259,7 +12259,6 @@
 /area/bigredv2/outside/bar)
 "aIw" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor{
 	icon_state = "freezerfloor"
 	},
@@ -17421,7 +17420,6 @@
 /area/bigredv2/outside/e)
 "aVZ" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/light,
 /turf/open/floor{
 	dir = 10;
@@ -17441,7 +17439,6 @@
 /area/bigredv2/caves/lambda/virology)
 "aWc" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/light,
 /turf/open/floor{
 	dir = 6;
@@ -18357,11 +18354,6 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/bigredv2/outside/office_complex)
-"aZc" = (
-/obj/structure/surface/table,
-/obj/structure/machinery/microwave,
-/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "aZd" = (
 /obj/structure/bed/chair/comfy/black{
@@ -27232,7 +27224,6 @@
 /area/bigredv2/caves/eta/living)
 "bDM" = (
 /obj/structure/surface/table,
-/obj/structure/machinery/microwave,
 /turf/open/floor,
 /area/bigredv2/caves/eta/living)
 "bDN" = (
@@ -68623,7 +68614,7 @@ aHF
 asv
 aXS
 aYs
-aZc
+bwA
 asv
 asv
 asv

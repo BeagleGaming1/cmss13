@@ -7664,13 +7664,6 @@
 	icon_state = "kitchen"
 	},
 /area/prison/research)
-"aur" = (
-/obj/structure/machinery/microwave,
-/obj/structure/surface/table/reinforced,
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
-/area/prison/research)
 "aus" = (
 /obj/structure/pipes/vents/pump/on,
 /turf/open/floor/prison{
@@ -8930,7 +8923,6 @@
 /area/prison/medbay)
 "aym" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "kitchen"
@@ -18542,7 +18534,6 @@
 /area/prison/residential/central)
 "baO" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "kitchen"
@@ -19729,7 +19720,6 @@
 /area/prison/kitchen)
 "bep" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
@@ -30655,7 +30645,6 @@
 /area/prison/toilet/security)
 "bKX" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "kitchen"
@@ -37074,11 +37063,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
-"cfz" = (
-/obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
-/turf/open/floor/plating,
-/area/prison/disposal)
 "cfA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -40969,7 +40953,6 @@
 /area/prison/pirate)
 "csm" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -44625,7 +44608,6 @@
 /area/prison/monorail/west)
 "hmQ" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/light{
 	dir = 8
 	},
@@ -49191,7 +49173,6 @@
 /area/prison/hallway/central/north)
 "vTZ" = (
 /obj/structure/surface/table/reinforced,
-/obj/structure/machinery/microwave,
 /obj/structure/machinery/light{
 	dir = 4
 	},
@@ -87349,7 +87330,7 @@ asf
 asf
 ate
 aAv
-aur
+auS
 auS
 avs
 awD
@@ -89553,7 +89534,7 @@ caV
 bZt
 cdM
 cgI
-cfz
+chP
 cgM
 chP
 chP

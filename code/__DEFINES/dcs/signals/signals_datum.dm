@@ -64,3 +64,6 @@
 
 // from /proc/update_living_queens() : /mob/living/carbon/xenomorph/queen
 #define COMSIG_HIVE_NEW_QUEEN "hive_new_queen"
+
+//from /datum/component/cooking/proc/send_state_signals() : /datum/component/cooking
+#define COMSIG_COOKING_MACHINE_STATE "cooking_machine_state"

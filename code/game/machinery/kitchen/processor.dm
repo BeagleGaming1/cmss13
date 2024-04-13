@@ -1,6 +1,6 @@
 /obj/structure/machinery/processor
 	name = "Food Processor"
-	icon = 'icons/obj/structures/machinery/kitchen.dmi'
+	icon = 'icons/obj/structures/machinery/kitchen/kitchen_misc.dmi'
 	icon_state = "processor"
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE

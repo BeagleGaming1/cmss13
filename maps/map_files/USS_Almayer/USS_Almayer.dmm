@@ -9331,9 +9331,6 @@
 /turf/open/floor/plating,
 /area/almayer/engineering/airmix)
 "aMG" = (
-/obj/structure/machinery/microwave{
-	pixel_y = 7
-	},
 /obj/structure/surface/table/almayer,
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -27820,9 +27817,6 @@
 /area/almayer/command/computerlab)
 "eeh" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 9
-	},
 /obj/item/reagent_container/food/snacks/packaged_burger,
 /turf/open/floor/almayer{
 	icon_state = "plate"
@@ -55314,9 +55308,6 @@
 /area/almayer/squads/req)
 "oqZ" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 5
-	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = -4;
 	pixel_y = 19
@@ -59011,16 +59002,6 @@
 	dir = 8
 	},
 /area/almayer/command/cic)
-"pOY" = (
-/obj/structure/surface/table/reinforced/almayer_B,
-/obj/structure/machinery/microwave{
-	density = 0;
-	pixel_y = 9
-	},
-/turf/open/floor/almayer{
-	icon_state = "plate"
-	},
-/area/almayer/living/grunt_rnr)
 "pPd" = (
 /obj/structure/machinery/door/poddoor/shutters/almayer{
 	dir = 2;
@@ -74917,13 +74898,6 @@
 	icon_state = "sterile_green_side"
 	},
 /area/almayer/medical/lower_medical_lobby)
-"vwI" = (
-/obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/living/grunt_rnr)
 "vwJ" = (
 /obj/structure/largecrate/random/case/double,
 /obj/structure/machinery/light/small,
@@ -78088,16 +78062,6 @@
 	icon_state = "plate"
 	},
 /area/almayer/living/grunt_rnr)
-"wyt" = (
-/obj/structure/surface/table/reinforced/almayer_B,
-/obj/structure/machinery/microwave{
-	pixel_x = -2;
-	pixel_y = 7
-	},
-/turf/open/floor/almayer{
-	icon_state = "bluefull"
-	},
-/area/almayer/command/cichallway)
 "wyz" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -81594,9 +81558,6 @@
 /area/almayer/command/computerlab)
 "xNz" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/microwave{
-	pixel_y = 7
-	},
 /obj/item/storage/box/cups{
 	pixel_x = 3
 	},
@@ -99043,7 +99004,7 @@ nNv
 pEB
 jUY
 qwp
-wyt
+sUE
 jmY
 iwW
 dCr
@@ -113779,7 +113740,7 @@ buH
 bHL
 buH
 lhB
-pOY
+kiM
 bDs
 jge
 bDs
@@ -115211,7 +115172,7 @@ tsa
 bDs
 gSk
 bDs
-vwI
+kvU
 bJt
 lAa
 mgb

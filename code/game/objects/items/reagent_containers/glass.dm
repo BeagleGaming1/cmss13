@@ -545,8 +545,8 @@
 		return
 	. = ..()
 
-/obj/item/reagent_container/glass/pressurized_canister/set_APTFT()
-	to_chat(usr, SPAN_WARNING("[src] has no transfer control valve! Use a dispenser to fill it!"))
+/obj/item/reagent_container/glass/pressurized_canister/set_amount_per_transfer_from_this(mob/living/carbon/human/user)
+	to_chat(user, SPAN_WARNING("[src] has no transfer control valve! Use a dispenser to fill it!"))
 	return
 
 /obj/item/reagent_container/glass/pressurized_canister/on_reagent_change()

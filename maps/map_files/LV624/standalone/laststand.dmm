@@ -287,10 +287,6 @@
 /area/lv624/ground/caves/north_central_caves)
 "lP" = (
 /obj/structure/surface/table/woodentable/poor,
-/obj/structure/machinery/microwave{
-	pixel_x = 2;
-	pixel_y = 3
-	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},

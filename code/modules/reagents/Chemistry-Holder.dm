@@ -495,6 +495,8 @@
 			reagents += ", "
 		reagents += "[chemical.name] ([chemical.volume]u)"
 
+	if(reagents == "")
+		return FALSE
 	return reagents
 
 /datum/reagents/proc/remove_all_type(reagent_type, amount, strict = 0, safety = 1) // Removes all reagent of X type. @strict set to 1 determines whether the childs of the type are included.

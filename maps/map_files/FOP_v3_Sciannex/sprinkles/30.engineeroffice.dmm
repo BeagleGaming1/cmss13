@@ -134,10 +134,6 @@
 /area/template_noop)
 "O" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/structure/machinery/microwave{
-	icon_state = "mwo";
-	pixel_y = 6
-	},
 /turf/open/floor/prison{
 	dir = 4;
 	icon_state = "greenfull"
