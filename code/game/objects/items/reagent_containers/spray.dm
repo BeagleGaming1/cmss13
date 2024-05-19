@@ -22,6 +22,11 @@
 	var/last_use = 1
 	var/use_delay = 0.5 SECONDS
 
+
+/obj/item/reagent_container/spray/Initialize()
+	. = ..()
+	verbs -= /obj/item/reagent_container/verb/set_APTFT
+
 /obj/item/reagent_container/spray/afterattack(atom/A, mob/user, proximity)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(isstorage(A) || istype(A, /obj/structure/surface/table) || istype(A, /obj/structure/surface/rack) || istype(A, /obj/structure/closet) \
