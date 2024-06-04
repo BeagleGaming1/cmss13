@@ -20,6 +20,10 @@
 
 	///The datum of the recipe selected
 	var/datum/recipe/selected_recipe
+	///The food item created by the recipe
+	var/obj/item/result
+	///The person who cooked the food
+	var/datum/weakref/chef
 	///The time that the recipe is supposed to start
 	var/cook_time_left
 
@@ -55,6 +59,7 @@
 	RegisterSignal(source_atom, COMSIG_STRUCTURE_ATTACKBY, PROC_REF(attempt_add_ingredients))
 	RegisterSignal(source_atom, COMSIG_STRUCTURE_PRE_TOGGLE_ANCHOR, PROC_REF(check_wrenchability))
 	START_PROCESSING(SSobj, src)
+	source_atom.update_icon(source_atom, src)
 
 	if(available_recipes)
 		return
@@ -66,6 +71,10 @@
 		var/obj/ingredient = remove_last_ingredient() //not delete, so you cant destroy important stuff in there
 		ingredient.forceMove(get_turf(source_atom))
 
+	result = null
+	selected_recipe = null
+	source_atom = null
+	chef = null
 	. = ..()
 
 ///Set the global list of all available recipes
@@ -198,6 +207,9 @@
 		to_chat(user, SPAN_NOTICE("You fail to put [attacking_item] in [source]."))
 		return
 
+	if(SEND_SIGNAL(source_atom, COMSIG_COOKING_MACHINE_ATTEMPT_ADD, src, user, attacking_item) & COMPONENT_COOKING_MACHINE_CANCEL_ADD) //Something special blocked it
+		return
+
 	ingredients += attacking_item
 	user.visible_message("[user] adds [attacking_item] to [source].", "You add [attacking_item] to [source].")
 	log_admin("[key_name(user)] has added [attacking_item] to [source].") //If you cook the wrong item I will come for you
@@ -222,9 +234,10 @@
 			playsound(source_atom, cooking_start_sound, 25)
 		source_atom.visible_message(SPAN_NOTICE("[source_atom] activates and begins cooking something."))
 
+	chef = WEAKREF(user)
 	cook_time_left = time_to_cook
 	selected_recipe = new_recipe
-	cooking_state = TRUE
+	cooking_state = COOKING_STATE_END
 	operating = TRUE
 	send_state_signals()
 
@@ -232,10 +245,10 @@
 	if(!cooking_state)
 		return
 
-	var/obj/item/result = selected_recipe.make(user, src)
+	result = selected_recipe.make(chef, src)
 
-	if(selected_recipe != select_recipe(available_recipes, src, user))
-		burnt_cooking(mob/user, result)
+	if(selected_recipe != select_recipe(available_recipes, src, chef))
+		burnt_cooking(chef, result)
 		return
 
 	if(!silent_cooking)
@@ -244,18 +257,22 @@
 		source_atom.visible_message(SPAN_NOTICE("[source_atom] finishes cooking [result]."))
 
 	ingredients += result
-	addtimer(CALLBACK(src, PROC_REF(burnt_cooking), user, result, cook_time), cook_time/2)
+	cooking_state = COOKING_STATE_BURN
+	cook_time_left = selected_recipe.time / 2
 	send_state_signals()
 
 /datum/component/cooking/proc/burnt_cooking()
-	if(!started_cooking)
+	if(!cooking_state)
 		return
 
-	if(!result in ingredients)
+	if(!(result in ingredients))
 		return
 
 	source_atom.visible_message(SPAN_WARNING("Is something burning?"))
+
 	burnt = TRUE
+	cooking_state = COOKING_STATE_FIRE
+	cook_time_left = selected_recipe.time / 2
 
 ///Any extra functions that the machine might have
 /datum/component/cooking/proc/extra_functionality(mob/user)
@@ -303,9 +320,14 @@
 	if(!operating)
 		return
 
+	if(isnull(cook_time_left))
+		return
+
 	if(cooking_state < COOKING_STATE_END || cooking_state > COOKING_STATE_FIRE)
 		selected_recipe = null
 		cook_time_left = null
+		result = null
+		chef = null
 		cooking_state = FALSE
 		operating = FALSE
 		on_fire = FALSE

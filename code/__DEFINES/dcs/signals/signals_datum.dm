@@ -67,3 +67,7 @@
 
 //from /datum/component/cooking/proc/send_state_signals() : /datum/component/cooking
 #define COMSIG_COOKING_MACHINE_STATE "cooking_machine_state"
+
+/// from /datum/component/cooking/proc/attempt_add_ingredients() : /datum/component/cooking, mob/living/carbon/human, /obj/item
+#define COMSIG_COOKING_MACHINE_ATTEMPT_ADD "cooking_machine_attempt_add"
+	#define COMPONENT_COOKING_MACHINE_CANCEL_ADD (1<<0)

@@ -1,7 +1,3 @@
-#define COOKING_DAMAGE_OPERATIONAL 0
-#define COOKING_DAMAGE_SCREWDRIVER 1
-#define COOKING_DAMAGE_WRENCH 2
-
 /obj/structure/machinery/kitchen
 	name = "abstract cooking device"
 	icon = 'icons/obj/structures/machinery/kitchen/kitchen_32x32.dmi'
@@ -10,12 +6,14 @@
 	use_power = USE_POWER_IDLE
 	throwpass = FALSE
 
+	icon_state = "DEBUG" //REMOVE THIS LATER
+
 	///The icon state used for all
-	var/base_icon_state
-	///If the machine is broken and needs repairs
-	var/broken = COOKING_DAMAGE_OPERATIONAL
+	var/base_icon_state = COOKING_TYPE_ALL_RECIPES
 	///What the machine can cook
-	var/cooking_flags = COOKING_TYPE_ALL_RECIPES
+	var/cooking_flags = NO_FLAGS
+	var/pixel_x_overlay_offset = 0
+	var/pixel_y_overlay_offset = 0
 
 /obj/structure/machinery/kitchen/Initialize(mapload, ...)
 	. = ..()
@@ -24,82 +22,28 @@
 	AddComponent(/datum/component/cooking, cooking_flags)
 	RegisterSignal(src, COMSIG_COOKING_MACHINE_STATE, PROC_REF(update_sprites))
 
-/obj/structure/machinery/kitchen/get_examine_text(mob/user)
-	. = ..()
-	switch(broken)
-		if(COOKING_DAMAGE_SCREWDRIVER)
-			. += SPAN_INFO("It requires a screwdriver to repair.")
-		if(COOKING_DAMAGE_WRENCH)
-			. += SPAN_INFO("It requires a wrench to start repairing.")
-
-/obj/structure/machinery/kitchen/attackby(obj/item/attacking_item, mob/user)
-	if(broken)
-		if(broken == COOKING_DAMAGE_SCREWDRIVER && HAS_TRAIT(attacking_item, TRAIT_TOOL_SCREWDRIVER))
-			if(!do_after(user, 10 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
-				return
-			to_chat(user, SPAN_NOTICE("You finish repairing [src] with [attacking_item]."))
-			damage_machine(-1)
-
-		if(broken == COOKING_DAMAGE_WRENCH && HAS_TRAIT(attacking_item, TRAIT_TOOL_WRENCH))
-			if(!do_after(user, 10 SECONDS, INTERRUPT_ALL, BUSY_ICON_BUILD, src))
-				return
-			to_chat(user, SPAN_NOTICE("You start to repair [src] with [attacking_item]."))
-			damage_machine(-1)
-		return
-	. = ..()
-
-/obj/structure/machinery/kitchen/ex_act(severity)
-	if(indestructible)
-		return
-
-	switch(severity)
-		if(0 to EXPLOSION_THRESHOLD_LOW)
-			damage_machine(prob(25))
-		if(EXPLOSION_THRESHOLD_LOW to EXPLOSION_THRESHOLD_MEDIUM)
-			damage_machine(pick(25;0, 50;1, 25;2))
-		if(EXPLOSION_THRESHOLD_MEDIUM to INFINITY)
-			damage_machine(rand(1, 2))
-
-/obj/structure/machinery/kitchen/bullet_act(obj/projectile/P)
-	. = ..()
-	if(indestructible)
-		return
-	if(prob(5))
-		damage_machine(1)
-
-/obj/structure/machinery/kitchen/proc/damage_machine(damage_severity, silent = FALSE)
-	if(!damage_severity)
-		return
-	var/old_broken = broken
-	broken = clamp(broken + damage_severity, COOKING_DAMAGE_OPERATIONAL, COOKING_DAMAGE_WRENCH)
-
-	if(broken <= old_broken) //if it was fixed
-		return
-	if(silent)
-		return
-	var/datum/effect_system/spark_spread/sparks = new
-	sparks.set_up(rand(1,5), TRUE, src)
-	sparks.start()
-
 ///Change the sprite based on whether the machine is on/off and whether it is cooking something
 /obj/structure/machinery/kitchen/proc/update_sprites(source, datum/component/cooking/cooking)
 	SIGNAL_HANDLER
 
 	if(!base_icon_state)
 		return
+	. = TRUE
+
 	var/functioning = cooking.functioning
 	var/operating = cooking.operating
 	var/state = cooking.cooking_state
 
+	overlays.Cut()
+
 	if(state >= COOKING_STATE_BURN)
-		var/image/image
+		var/image/smoke_overlay
 		switch(state)
 			if(COOKING_STATE_BURN)
-				image = image(icon = 'icons/obj/structures/machinery/kitchen/kitchen_32x32.dmi', icon_state = "smoking")
+				smoke_overlay = image(icon = 'icons/obj/structures/machinery/kitchen/kitchen_32x32.dmi', icon_state = "smoking")
 			if(COOKING_STATE_FIRE)
-				image = image(icon = 'icons/obj/structures/machinery/kitchen/kitchen_32x32.dmi', icon_state = "burning")
-
-		return
+				smoke_overlay = image(icon = 'icons/obj/structures/machinery/kitchen/kitchen_32x32.dmi', icon_state = "burning")
+		overlays += smoke_overlay
 
 	if(!functioning)
 		icon_state = "[base_icon_state]_off"
@@ -108,14 +52,6 @@
 		icon_state = "[base_icon_state]_on"
 		return
 	icon_state = base_icon_state
-
-#undef COOKING_DAMAGE_OPERATIONAL
-#undef COOKING_DAMAGE_SCREWDRIVER
-#undef COOKING_DAMAGE_WRENCH
-
-/obj/structure/machinery/kitchen/debug //REMOVE THIS
-	name = "DEBUG"
-	icon_state = "DEBUG"
 
 /obj/structure/machinery/kitchen/microwave
 	name = "microwave"
@@ -133,6 +69,7 @@
 	icon = 'icons/obj/structures/machinery/kitchen/kitchen_64x32.dmi'
 	base_icon_state = "grill_ship"
 	icon_state = "grill_ship_off"
+	bound_x = 32
 
 /obj/structure/machinery/kitchen/griddle
 	name = "griddle"
@@ -144,6 +81,7 @@
 	icon = 'icons/obj/structures/machinery/kitchen/kitchen_64x32.dmi'
 	base_icon_state = "griddle_ship"
 	icon_state = "griddle_ship_off"
+	bound_x = 32
 
 /obj/structure/machinery/kitchen/oven
 	name = "oven"
@@ -155,6 +93,26 @@
 	icon = 'icons/obj/structures/machinery/kitchen/kitchen_64x64.dmi'
 	base_icon_state = "oven_ship"
 	icon_state = "oven_ship_off"
+	bound_x = 32
+
+/obj/structure/machinery/kitchen/oven/ship/update_icon(source, datum/component/cooking/cooking)
+	. = ..()
+
+	if(!.)
+		return
+
+	var/functioning = cooking.functioning
+	var/operating = cooking.operating
+
+	var/image/oven_top //please tell me theres a better way to do this
+	if(!functioning)
+		oven_top = image(icon_state = "[base_icon_state]_off_top")
+	else if(operating)
+		oven_top = image(icon_state = "[base_icon_state]_on_top")
+	else
+		oven_top = image(icon_state = "[base_icon_state]_top")
+	oven_top.layer = ABOVE_XENO_LAYER
+	overlays += oven_top
 
 /obj/structure/machinery/kitchen/stove
 	name = "stove"
@@ -162,18 +120,48 @@
 	icon = 'icons/obj/structures/machinery/kitchen/kitchen_64x32.dmi'
 	base_icon_state = "stove"
 	icon_state = "stove_off"
+	bound_x = 32
 
-/obj/structure/machinery/kitchen/stove/update_sprites(source, datum/component/cooking/cooking)
+/obj/structure/machinery/kitchen/stove/Initialize(mapload, ...)
 	. = ..()
-	if(!cooking.ingredients.len)
+	RegisterSignal(src, COMSIG_COOKING_MACHINE_ATTEMPT_ADD, PROC_REF(attempt_add_ingredient))
+
+/obj/structure/machinery/kitchen/stove/update_icon(source, datum/component/cooking/cooking)
+	. = ..()
+
+	if(!.)
 		return
 
-	icon_state = "[base_icon_state]_pots"
+	var/ingredient_amount = min(cooking.ingredients.len, 4)
+	if(!ingredient_amount)
+		return
+
+	var/image/stove_pots
+	stove_pots += image(icon_state = "[base_icon_state]_pots_[ingredient_amount]")
+	overlays += stove_pots
+
+/obj/structure/machinery/kitchen/stove/proc/attempt_add_ingredient(source, datum/component/cooking/cooking, mob/living/carbon/human/user, obj/item/attacking_item)
+	SIGNAL_HANDLER
+
+	if(!istype(attacking_item, /obj/item)) //TODO restrict to pots and pans
+		return COMPONENT_COOKING_MACHINE_CANCEL_ADD
 
 /obj/structure/machinery/kitchen/duo
 	name = "range"
 	cooking_flags = COOKING_TYPE_STOVE|COOKING_TYPE_OVEN
 	base_icon_state = "duo"
 	icon_state = "duo_off"
+
+/obj/structure/machinery/kitchen/processor
+	name = "processor"
+	cooking_flags = COOKING_TYPE_PROCESSOR
+	base_icon_state = "processor"
+	icon_state = "processor_off"
+
+/obj/structure/machinery/kitchen/gibber
+	name = "gibber"
+	cooking_flags = COOKING_TYPE_GIBBER
+	base_icon_state = "gibber"
+	icon_state = "gibber_off"
 
 //hi chat
